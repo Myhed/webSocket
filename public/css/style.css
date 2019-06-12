@@ -1,0 +1,57 @@
+*{
+    padding:0;
+    margin:0;
+}
+
+#list-user-connected {
+    height: 94vh;
+    width:15%;
+    border-right: 1px solid black;
+    float:left;
+}
+.clearfix {
+    display: block;
+    clear:both;
+}
+#container-message {
+    height: 94vh;
+    width:84.2%;
+    background:black;
+    /* position:absolute; */
+    display: inline-block;
+}
+
+#rooms{
+    width:100%;
+}
+
+#poste-message {
+    width: 50%;
+    height: 45px;
+    background:green;
+    display: inline-block;
+    margin-left: 15%;
+    /* position: relative; */
+}
+
+.container {
+    height: inherit;
+    width: inherit;
+    background:blue;
+    position: absolute; 
+
+}
+
+#message {
+    width: 100%;
+    height: 55px;
+    padding:15px;
+}
+
+#rooms > li {
+    display: block;
+    padding:8px 5px;
+    border-bottom:1px solid #ccc;
+    cursor:pointer;
+    text-align: center;
+}
