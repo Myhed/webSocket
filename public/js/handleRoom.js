@@ -6,6 +6,20 @@ const handleRooms = {
       }
     });
   },
+  displayAllRooms: rooms => {
+    const labelContainer = document.querySelector("#rooms");
+    const containerRooms = document.querySelector("#container-message");
+    rooms.forEach(room => {
+        const li = handleDom.createAndFillElement("li", room.name, [
+          { type: "class", name: "room " + room.name }
+        ]);
+        const containerRoom = handleDom.createAndFillElement("div","text "+ room.name, [
+          { type: "class", name: "room " + room.name + " container" }
+        ]);
+        labelContainer.appendChild(li);
+        containerRooms.appendChild(containerRoom);
+      });
+  },
   whatRoomContainerDisplay: labels => {
     if (!Array.isArray(labels)) {
       return;
