@@ -6,8 +6,8 @@ window.onload = async function() {
   handleRooms.displayAllRooms(rooms)
   // Get only label (li)
   const roomLabel = document.querySelectorAll(".room");
-  const labels = handleRooms.filterOneTypeElement(roomLabel, 2);
+  const labels = handleRooms.filterTypeElementByTagName(roomLabel, "li");
+  console.log(labels)
   // set a listener for all label (li)
-  const current = handleRooms.whatRoomContainerDisplay(labels)
-  console.log(current)
+  handleRooms.whichRoomContainerDisplay(labels)
 };

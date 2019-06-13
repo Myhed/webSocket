@@ -1,10 +1,18 @@
 const handleRooms = {
-  filterOneTypeElement: (HTMLelements, filteringCriterion) => {
+  defaultRoom: [],
+  filterTypeElementByTagName: (HTMLelements, filteringCriterion) => {
     return Array.from(HTMLelements).filter(HTMLelement => {
-      if (HTMLelement.className.split(" ").length === filteringCriterion) {
+        console.log()
+      if (HTMLelement.localName === filteringCriterion) {
         return HTMLelement;
       }
     });
+  },
+  setDefaultRoomDisplayed: (room) => {
+    handleRooms.defaultRoom.push(room)
+  },
+  getDefaultRoomDisplayed: () => {
+      return handleRooms.defaultRoom
   },
   displayAllRooms: rooms => {
     const labelContainer = document.querySelector("#rooms");
@@ -14,29 +22,54 @@ const handleRooms = {
           { type: "class", name: "room " + room.name }
         ]);
         const containerRoom = handleDom.createAndFillElement("div","text "+ room.name, [
-          { type: "class", name: "room " + room.name + " container" }
+            { type: "class", name: "room " + room.name + " container" }
         ]);
         labelContainer.appendChild(li);
         containerRooms.appendChild(containerRoom);
+        handleRooms.defaultRoomDisplay(room)
       });
   },
-  whatRoomContainerDisplay: labels => {
+  defaultRoomDisplay: room => {
+    const roomLabel = handleRooms.filterTypeElementByTagName(document.getElementsByClassName('room '+room.name),"li")
+    const roomContainer = handleRooms.filterTypeElementByTagName(document.getElementsByClassName('room '+ room.name),"div")
+    if(room.tag === '/'){
+        roomContainer[0].classList.add('containerRoomDisplay')
+        roomLabel[0].classList.add('labelActive')
+        handleRooms.setDefaultRoomDisplayed({roomLabel: roomLabel[0],roomContainer: roomContainer[0]})
+    }else{
+        roomLabel[0].classList.add('labelNotActive')
+    }
+  },
+  whichRoomContainerDisplay: labels => {
     if (!Array.isArray(labels)) {
       return;
     }
     let container;
     labels.forEach(label => {
       label.addEventListener("click",e => {
+          if(handleRooms.getDefaultRoomDisplayed().length){
+            handleRooms.getDefaultRoomDisplayed()[0].roomContainer.classList.remove('containerRoomDisplay')
+            handleRooms.getDefaultRoomDisplayed()[0].roomLabel.classList.remove('labelActive')
+            handleRooms.getDefaultRoomDisplayed()[0].roomLabel.classList.add('labelNotActive')
+            handleRooms.defaultRoom.pop()
+          }
           if (typeof container !== "undefined") {
             container.oldContainerClicked.classList.remove('containerRoomDisplay')
             container.oldContainerClicked.classList.add('containerRoomHidde')
+            container.oldLabel.classList.remove('labelActive')
+            container.oldLabel.classList.add('labelNotActive')
           }
+          const classNamePopped = e.target.className.split(' ')
+          classNamePopped.pop()
           const containerClicked = document.getElementsByClassName(
-            e.target.className + " container"
-          )[0];
+            classNamePopped.join(' ') + " container"
+          )[0]
+          const labelClicked = e.target
+          labelClicked.classList.remove('labelNotActive')
+          labelClicked.classList.add('labelActive')
           containerClicked.classList.remove('containerRoomHidde')
           containerClicked.classList.add('containerRoomDisplay')
-          container = { oldContainerClicked:containerClicked, label: e.target };
+          container = { oldContainerClicked:containerClicked, oldLabel: labelClicked };
         },false);
     });
   }

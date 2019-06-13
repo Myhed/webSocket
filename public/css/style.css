@@ -19,6 +19,13 @@
 .containerRoomHidde {
     z-index:0
 }
+.labelActive {
+    background: white;
+}
+.labelNotActive {
+    background: #ccc;
+}
+
 #container-message {
     height: 94vh;
     width:84.2%;
