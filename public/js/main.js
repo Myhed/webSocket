@@ -10,7 +10,7 @@ window.onload = async function() {
     const li = handleDom.createAndFillElement("li", room.name, [
       { type: "class", name: "room " + room.name }
     ]);
-    const containerRoom = handleDom.createAndFillElement("div","", [
+    const containerRoom = handleDom.createAndFillElement("div","text "+ room.name, [
       { type: "class", name: "room " + room.name + " container" }
     ]);
     divRooms.appendChild(li);
@@ -20,5 +20,6 @@ window.onload = async function() {
   const roomLabel = document.querySelectorAll(".room");
   const labels = handleRooms.filterOneTypeElement(roomLabel, 2);
   // set a listener for all label (li)
-  handleRooms.whatRoomContainerDisplay(labels)
+  const current = handleRooms.whatRoomContainerDisplay(labels)
+  console.log(current)
 };
