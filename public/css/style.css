@@ -13,10 +13,10 @@
     display: block;
     clear:both;
 }
-.containerRoomDisplay {
+.containerchannelDisplay {
     z-index: 1000;
 }
-.containerRoomHidde {
+.containerchannelHidde {
     z-index:0
 }
 .labelActive {
@@ -34,14 +34,13 @@
     display: inline-block;
 }
 
-#rooms{
+#channels{
     width:100%;
 }
 
 #poste-message {
     width: 50%;
     height: 45px;
-    background:green;
     display: inline-block;
     margin-left: 15%;
     /* position: relative; */
@@ -50,8 +49,9 @@
 .container {
     height: inherit;
     width: inherit;
-    background:blue;
+    background:#ccc;
     position: absolute; 
+    padding:12px 7px 0px 7px;
 
 }
 
@@ -61,7 +61,7 @@
     padding:15px;
 }
 
-#rooms > li {
+#channels > li {
     display: block;
     padding:8px 5px;
     border-bottom:1px solid #ccc;
