@@ -12,8 +12,11 @@ const channelsDescriptions: channelDescription[] = [ {name:'League of legend',ta
 {name:'PUBG',tag:'/PUBG'},
 {name:'Fortnite',tag:'/Fortnite'}]
 
-const channels: Channel[] = channelsDescriptions.map((channelDescription,index) => 
-        new Channel(channelDescription.name,channelDescription.tag,chat.of(channelDescription.tag)))
+const channels: Channel[] = channelsDescriptions.map((channelDescription,index) => new Channel(channelDescription.name,channelDescription.tag,chat.of(channelDescription.tag)))
+
+channels.forEach(channel => {
+    channel.connect()
+})
 
 app.use(express.static(path.join(__dirname, '/public')))
 

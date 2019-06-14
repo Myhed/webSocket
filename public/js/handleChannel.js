@@ -10,6 +10,14 @@ const handlechannels = {
   setDefaultchannelDisplayed: (channel) => {
     handlechannels.defaultchannel.push(channel)
   },
+  removeDefaultChannelDisplayed: () => {
+    if (handlechannels.getDefaultchannelDisplayed().length) {
+      handleDom.removeOrAddClass(handlechannels.getDefaultchannelDisplayed()[0].channelContainer,{remove:"containerChannelDisplay"})
+      handleDom.removeOrAddClass(handlechannels.getDefaultchannelDisplayed()[0].channelLabel,{remove:"labelActive",add:"labelNotActive"})
+      handlechannels.defaultchannel.pop()
+    }
+    return;
+  },
   getDefaultchannelDisplayed: () => {
     return handlechannels.defaultchannel
   },
@@ -32,42 +40,34 @@ const handlechannels = {
     const channelLabel = handlechannels.filterTypeElementByTagName(document.getElementsByClassName('channel ' + channel.name), "li")
     const channelContainer = handlechannels.filterTypeElementByTagName(document.getElementsByClassName('channel ' + channel.name), "div")
     if (channel.tag === '/') {
-      channelContainer[0].classList.add('containerchannelDisplay')
+      channelContainer[0].classList.add('containerChannelDisplay')
       channelLabel[0].classList.add('labelActive')
       handlechannels.setDefaultchannelDisplayed({ channelLabel: channelLabel[0], channelContainer: channelContainer[0] })
+      handleSocket.whichChannelToConnect(channel,0)
     } else {
       channelLabel[0].classList.add('labelNotActive')
     }
   },
-  whichChannelContainerDisplay: labels => {
+  whichChannelContainerDisplay:(labels,channels) => {
     if (!Array.isArray(labels)) {
       return;
     }
     let container;
-    labels.forEach(label => {
+    labels.forEach((label,index) => {
       label.addEventListener("click", e => {
-        if (handlechannels.getDefaultchannelDisplayed().length) {
-          handlechannels.getDefaultchannelDisplayed()[0].channelContainer.classList.remove('containerchannelDisplay')
-          handlechannels.getDefaultchannelDisplayed()[0].channelLabel.classList.remove('labelActive')
-          handlechannels.getDefaultchannelDisplayed()[0].channelLabel.classList.add('labelNotActive')
-          handlechannels.defaultchannel.pop()
-        }
+        handleSocket.whichChannelToConnect(channels[index],index)
+        handlechannels.removeDefaultChannelDisplayed()
         if (typeof container !== "undefined") {
-          container.oldContainerClicked.classList.remove('containerchannelDisplay')
-          container.oldContainerClicked.classList.add('containerchannelHidde')
-          container.oldLabel.classList.remove('labelActive')
-          container.oldLabel.classList.add('labelNotActive')
+          handleDom.removeOrAddClass(container.oldContainerClicked,"containerChannelDisplay","containerChannelHidde")
+          handleDom.removeOrAddClass(container.oldLabel,{remove:"labelActive",add:"labelNotActive"})
         }
-        const classNamePopped = e.target.className.split(' ')
-        classNamePopped.pop()
+        const rootNameClass = handleDom.deepNameClass(e.target.className)
         const containerClicked = document.getElementsByClassName(
-          classNamePopped.join(' ') + " container"
+          rootNameClass + " container"
         )[0]
         const labelClicked = e.target
-        labelClicked.classList.remove('labelNotActive')
-        labelClicked.classList.add('labelActive')
-        containerClicked.classList.remove('containerchannelHidde')
-        containerClicked.classList.add('containerchannelDisplay')
+        handleDom.removeOrAddClass(labelClicked,{remove:"labelNotActive",add:"labelActive"})
+        handleDom.removeOrAddClass(containerClicked,{remove:"containerChannelHidde",add:"containerChannelDisplay"})
         container = { oldContainerClicked: containerClicked, oldLabel: labelClicked };
       }, false);
     });
