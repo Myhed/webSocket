@@ -9,4 +9,6 @@ window.onload = async function() {
   console.log(channels)
   // set a listener for all label (li)
   handlechannels.whichChannelContainerDisplay(labels,channels)
+  // handleInput
+  handleInput.sendInput();
 };
