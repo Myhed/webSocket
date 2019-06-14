@@ -9,9 +9,10 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="list-user-connected">
+    <div id="list-channel">
         <ul id="channels"></ul>
     </div>
+    <div class="" id="list-room"></div>
     <div id="container-message">
     </div>
     <div id="poste-message">
@@ -20,14 +21,9 @@
         </form>
     </div>
     <script src="js/handleDom.js"></script>
+    <script src="js/handleSocket.js"></script>
     <script src="js/handleChannel.js"></script>
     <script src="js/request.js"></script>
     <script src="js/main.js"></script>
-    <script>
-        const socket = io()
-        socket.on('Room',(data) =>{
-            console.log(data)
-        })
-    </script>
 </body>
 </html>

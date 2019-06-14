@@ -3,7 +3,19 @@
     margin:0;
 }
 
-#list-user-connected {
+#list-channel {
+   position:fixed;
+   background:#26262b;
+   height: 100%;
+   transform:translateX(-100px);
+   transition: all ease-in 0.2s;
+   padding: 10px 19px;
+}
+#list-channel:hover{
+    transition: all ease-out 0.2s;
+    transform:translateX(0px);
+}
+#list-room{
     height: 94vh;
     width:15%;
     border-right: 1px solid black;
@@ -13,10 +25,10 @@
     display: block;
     clear:both;
 }
-.containerchannelDisplay {
+.containerChannelDisplay {
     z-index: 1000;
 }
-.containerchannelHidde {
+.containerChannelHidde {
     z-index:0
 }
 .labelActive {
@@ -63,6 +75,10 @@
 
 #channels > li {
     display: block;
+    border-radius: 50%;
+    height: 60px;
+    width:60px;
+    margin-bottom: 10px;
     padding:8px 5px;
     border-bottom:1px solid #ccc;
     cursor:pointer;
