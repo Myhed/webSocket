@@ -2,6 +2,7 @@ const handleSocket = {
     host: 'http://localhost:8080',
     currentChannel: '/',
     allChannel:[],
+    currentChat: '',
     getHost: () => {
         return handleSocket.host
     },
@@ -14,16 +15,19 @@ const handleSocket = {
     },
     whichChannelToConnect: (channel,index) => {
         if(typeof handleSocket.allChannel[index] === "undefined"){
-            handleSocket
+            return handleSocket
                 .setCurrentChannel(channel.tag)
                 .connexionToChannel(channel)
         }else{
             console.log('vous êtes déjà connecter voicis le chat')
-            handleSocket.allChannel[index].chat.emit('click',`je click sur ${handleSocket.allChannel[index].name}`)
-            return handleSocket.allChannel[index]
+            handleSocket.chat = handleSocket.allChannel[index]
+            return handleSocket.chat
         }
     },
-    connexionToChannel: (channel) => {
+    connexionToChannel: (channel = null) => {
+        if(channel === null){
+            return handleSocket.chat
+        }
         handleSocket.chat = io(handleSocket.host+handleSocket.channel)
         handleSocket.allChannel.push(Object.assign(channel,{chat:handleSocket.chat}))
         return handleSocket
