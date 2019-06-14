@@ -8,5 +8,5 @@ window.onload = async function() {
   const labels = handlechannels.filterTypeElementByTagName(channelLabel, "li");
   console.log(channels)
   // set a listener for all label (li)
-  handlechannels.whichChannelContainerDisplay(labels)
+  handlechannels.whichChannelContainerDisplay(labels,channels)
 };
