@@ -51,7 +51,7 @@
 }
 
 #poste-message {
-    width: 50%;
+    width: 82.7%;
     height: 45px;
     display: inline-block;
     margin-left: 15%;
@@ -63,7 +63,7 @@
     width: inherit;
     background:#ccc;
     position: absolute; 
-    padding:12px 7px 0px 7px;
+    padding:3px 7px 0px 7px;
 
 }
 
