@@ -19,10 +19,11 @@ export class Channel {
             socket.on('disconnect', () => {
                 console.log('a user is disconnected')
             })
-            socket.on('message',message => {
-                console.log('a user sended a message: ', message)
-                socket.emit('sendMessage',message)
+            socket.on('message', message => {
+                console.log(`a user sended a message on ${this.name} :`, message)
+                socket.emit('receiveMessage', {name:this.name,message:message})
             })
+            socket.emit('numberUserInChannel', {userConnected: this.users.length})
             socket.on('click',data => {
                 console.log(data);
             })
