@@ -55,19 +55,20 @@ const handlechannels = {
     let container;
     labels.forEach((label,index) => {
       label.addEventListener("click", e => {
-        handleSocket.whichChannelToConnect(channels[index],index)
+        const rootNameClass = handleDom.deepNameClass(e.target.className)
+        handleSocket.whichChannelToConnect(Object.assign(channels[index],{rootNameClass: rootNameClass}),index)
         handlechannels.removeDefaultChannelDisplayed()
         if (typeof container !== "undefined") {
-          handleDom.removeOrAddClass(container.oldContainerClicked,"containerChannelDisplay","containerChannelHidde")
+          handleDom.removeOrAddClass(container.oldContainerClicked,{remove:"containerChannelDisplay",add:"containerChannelHidde"})
           handleDom.removeOrAddClass(container.oldLabel,{remove:"labelActive",add:"labelNotActive"})
         }
-        const rootNameClass = handleDom.deepNameClass(e.target.className)
         const containerClicked = document.getElementsByClassName(
           rootNameClass + " container"
         )[0]
         const labelClicked = e.target
         handleDom.removeOrAddClass(labelClicked,{remove:"labelNotActive",add:"labelActive"})
         handleDom.removeOrAddClass(containerClicked,{remove:"containerChannelHidde",add:"containerChannelDisplay"})
+        
         container = { oldContainerClicked: containerClicked, oldLabel: labelClicked };
       }, false);
     });
