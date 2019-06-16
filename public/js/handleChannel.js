@@ -43,7 +43,7 @@ const handlechannels = {
       channelContainer[0].classList.add('containerChannelDisplay')
       channelLabel[0].classList.add('labelActive')
       handlechannels.setDefaultchannelDisplayed({ channelLabel: channelLabel[0], channelContainer: channelContainer[0] })
-      handleSocket.whichChannelToConnect(channel,0)
+      handleSocket.whichChannelToConnect(Object.assign(channel,{rootNameClass: handleDom.deepNameClass(channelLabel[0].className)}),0)
     } else {
       channelLabel[0].classList.add('labelNotActive')
     }
