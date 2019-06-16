@@ -1,5 +1,5 @@
 const handleDom = {
-  createAndFillElement: (htmlElement, text, attributes = [{}]) => {
+  createAndFillElement: (htmlElement, text, attributes = []) => {
     const elementCreated = document.createElement(htmlElement);
     if (text.length) {
       const textNode = document.createTextNode(text);
