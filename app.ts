@@ -14,7 +14,7 @@ const channelsDescriptions: channelDescription[] = [ {name:'League of legend',ta
 
 const channels: Channel[] = channelsDescriptions.map((channelDescription,index) => new Channel(channelDescription.name,channelDescription.tag,chat.of(channelDescription.tag)))
 
-channels.forEach(channel => {
+channels.forEach((channel,id) => {
     channel.connect()
 })
 

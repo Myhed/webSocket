@@ -15,7 +15,7 @@
     transition: all ease-out 0.2s;
     transform:translateX(0px);
 }
-#list-room{
+#list-users {
     height: 94vh;
     width:15%;
     border-right: 1px solid black;
@@ -71,6 +71,14 @@
     width: 100%;
     height: 55px;
     padding:15px;
+}
+
+#users li {
+    text-align: center;
+    display:block;
+    font-size: 24px;
+    border-bottom:1px solid black;
+    width:100%;
 }
 
 #channels > li {
