@@ -24,18 +24,8 @@ const handleSocket = {
             console.log('vous êtes déjà connecter voicis le chat')
             //handleSocket.getSocketChannel().emit('getAllUser')
             const channelId = handleSocket.allChannel.indexOf(channel.tag)
-            console.log(handleSocket.allSocketChannel[channelId])
+            console.log(handleSocket.allSocketChannel[channelId].users)
             handleSocket.whichSocketChannel(handleSocket.allSocketChannel[channelId].chat)
-            // const users = document.querySelector("#users")
-            // if(handleSocket.allChannel[handleSocket.allChannel.indexOf(channel.tag)] !== handleSocket){
-            // while(users.firstChild){
-            //   users.removeChild(users.firstChild)
-            // }
-            // }
-            // handleSocket.allSocketChannel[channelId].users.forEach(user => {
-            //     users.appendChild(handleDom.createAndFillElement('li',user,{type:'class',name:"user"}))
-            // })
-            console.log(handleSocket.getSocketChannel())
             return handleSocket.getSocketChannel()
         }
     },
@@ -52,7 +42,8 @@ const handleSocket = {
             handleSocket.chatInfo = channel
             handleSocket.allChannel.push(channel.tag)
             handleSocket.allSocketChannel.push(Object.assign(channel,{chat,users:[]}))
-            user.addUserToTheList()
+            user.addUserToTheList(channel.name)
+            console.log("name channel ",channel)
             return handleSocket.getSocketChannel()
     },
     numberClientInChannel: () => {

@@ -9,6 +9,7 @@
    height: 100%;
    transform:translateX(-100px);
    transition: all ease-in 0.2s;
+   z-index: 70000;
    padding: 10px 19px;
 }
 #list-channel:hover{
@@ -20,6 +21,7 @@
     width:15%;
     border-right: 1px solid black;
     float:left;
+    position: relative;
 }
 .clearfix {
     display: block;
@@ -73,12 +75,27 @@
     padding:15px;
 }
 
-#users li {
+.users li {
     text-align: center;
     display:block;
     font-size: 24px;
     border-bottom:1px solid black;
     width:100%;
+}
+
+.users {
+   position:absolute;
+   background:#ccc;
+   height: inherit;
+   width: 100%;
+}
+
+.users-list-display{
+    z-index: 1000;
+}
+
+.users-list-hidde{
+    z-index:0;
 }
 
 #channels > li {
